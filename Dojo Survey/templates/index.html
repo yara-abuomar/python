@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dojo Survey</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/style.css')}}">
+</head>
+<body>
+    <div>
+        <form action="/result" method="post">
+        <p>Your name: <input type="text" name="name" ></p>
+        <p>Dojo location: <select name="location"> <option value="Nablus"> Nablus</option>  <option value="Ramallah">Ramallah</option> <option value="Jenin"> Jenin</option></select> </p>
+        <p>Favorit languge: <select name="languge"> <option value="Paython"> Paython</option>  <option value="Css">Css</option> <option value="Java"> Java</option></select> </p>
+        <p>Comment (optional):  </p>
+        <p><textarea name="Comment" id="Comment" cols="20" rows="5"></textarea></p>
+        <p> <input type="submit" value="Button"></p>
+    </form>
+
+    </div>
+    
+</body>
+</html>
