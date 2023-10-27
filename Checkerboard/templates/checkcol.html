@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkerboard</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/style.css')}}">
+</head>
+<body>
+    
+        <table>
+            {%for i in range(0,c):%}
+            {%if i %2==0:%}
+            <tr style="background-color: {{cl1}};"></tr> 
+          {%endif%}
+        {%if i%2!=0:%}
+            <tr  style="background-color: {{cl2}};"></tr>
+          {%endif%}
+            
+             
+              {%for j in range(0,r):%}
+              
+              {%if j %2==0 and i %2==0:%}
+                  <td  style="background-color: {{cl1}};"></td> 
+                {%endif%}
+              {%if j%2!=0 or i%2!=0:%}
+                  <td  style="background-color: {{cl2}};"></td>
+                {%endif%}
+              {%endfor%}
+           
+    
+           {%endfor%}
+    
+        </table>
+    
+    
+</body>
+</html>
