@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dojo survy index </title>
+    {%load static%}
+    <link rel="stylesheet" href="{static 'css/style.css'}">
+</head>
+<body>
+    <form action="/route" method="POST">
+        {%csrf_token%}
+       <p>Your name : <input type="text" name="fname"> </p>
+      <p> Dojo Location : <select name="Location">
+            <option value="Nablus">Nablus</option>
+            <option value="Ramallah"> Ramallah</option>
+            <option value="jenen"> jenen </option>
+        </select> </p>
+         <p>Favouruit languge: <select  name="languge">
+            <option value="python"> python</option>
+            <option value="css">css</option>
+            <option value="java">java</option>
+        </select></p>
+         <p>comment(optional):
+        <textarea name="comment" cols="20" rows="10"></textarea></p>
+        <p></p><input type="submit" name="Button" value="Button"></p>
+
+    </form>
+    
+</body>
+</html>
