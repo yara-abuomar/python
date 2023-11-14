@@ -1,0 +1,14 @@
+.main{
+    display: flex;
+    gap: 25px;
+    
+}
+.box{
+    border: 2px solid black;
+    
+    
+    
+    }
+h3{
+    border: 2px solid black;
+}
