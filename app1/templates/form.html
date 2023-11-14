@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Great number game</title>
+</head>
+<body>
+    
+    <h1> Welcome to the great number game</h1>
+    <h4> Im thinking of anumber between 1 to 100 </h4>
+    <h4> Take a guess</h4>
+   
+    {% if request.session.num > request.session.number %}
+       <p>Toolow</p>
+    {% endif %}
+    {% if request.session.num < request.session.number %}
+     <p> TOOhigh</p>
+    {% endif %}
+    
+   
+    <form action="/route" method="post"> 
+        {% csrf_token %}
+        <input type="number" name="guess">
+        <input type="submit" value="Submit">
+    </form>
+
+</body>
+</html>
