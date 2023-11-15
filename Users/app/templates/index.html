@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+</head>
+<body>
+    <h1>  All the Users</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>email</th>
+            <th>age</th>
+        </tr>
+        
+        {% for user in allusers %}
+        <tr>
+        <td> {{user.id}}</td>
+        <td>{{user.first_name}} {{user.last_name}}</td>
+        <td> {{user.email}}</td>
+        <td>{{user.age}}</td>
+
+        {% endfor %}
+         </tr>
+    </table> 
+   
+     <hr>
+     <h1> Add a User</h1>
+     <form method="post" action="/route">
+        {%csrf_token%}
+       <p> First name:<input type="text" name="fname"></p>
+       <p> Last name:<input type="text" name="lname"></p>
+       <p>Email:<input type="text" name="email1"></p>
+       <p> Age:<input type="number" name="age1"></p>
+       <input type="submit" value="ADD">
+     </form>
+</body>
+</html>
