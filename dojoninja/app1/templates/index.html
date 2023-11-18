@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> Add A Dojo</h1>
+    <form action="/route1" method="post">
+        {%csrf_token%}
+        <p> Name:<input type="text" name="dojoname"></p>
+        <p> City:<input type="text" name="dojocity"></p>
+        <p> State:<input type="text" name="dojostate"></p>
+        <p> <input type="submit" value="ADD"></p>
+
+    </form>
+
+    <h1> Add A NiNJA</h1>
+    <form action="/route2" method="post">
+        {%csrf_token%}
+        <p> First name:<input type="text" name="fname"></p>
+        <p> Last_name:<input type="text" name="lname"></p>
+        <p> Dojo: <select name="dojoadd">
+            {% for dj in alldojo %}
+            <option value="{{dj.id}}"> {{dj.name}} </option>
+            {% endfor %}
+        </select></p>
+        <p> <input type="submit" value="ADD"></p>
+
+    </form>
+
+    <hr>
+    {% for doj in alldojo %}
+    
+    <p> {{doj.name}} </p>
+   
+      <p> <form action="/del/{{doj.id}}" method="post" id="{{doj.id}} ">
+        {% csrf_token%}
+        <input type="submit" value="delete" id="{{doj.id}} ">
+      </form></p>
+      <ul>
+      {% for nin in doj.ninjas.all %}
+      <li> {{nin.first_name }}  {{nin.last_name }}</li>
+      {% endfor %}
+      </ul>
+
+      
+      {% endfor %}
+    
+
+
+    
+
+</body>
+</html>
