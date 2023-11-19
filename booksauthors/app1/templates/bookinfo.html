@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> {{onebook.title}}</h1>
+    <h5>{{onebook.id}}</h5>
+    <h5>{{onebook.description}}</h5>
+
+    Author:
+    {% for tow in onebook.authors.all %}
+    {{tow.first_name}} {{tow.last_name}}
+    {%endfor%}
+    <form method="post" action="/auth/{{onebook.id}}">
+        {% csrf_token %}
+        <select name="author1">
+            {% for auth in oneauthors %}
+            {% if auth not in onebook.authors.all%}
+            <option value="{{auth.id}}"> {{auth.first_name}}{{auth.last_name}} </option>
+            {% endif %}
+            {%endfor%}
+        </select>
+        <input type="submit" value="Add">
+    </form>
+    
+
+    
+</body>
+</html>

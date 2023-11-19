@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> Add a Author </h1>
+    <form method="post" action="/route2">
+        {% csrf_token %}
+        <p> First name: <input type="text" name="fname"></p>
+        <p> Last name: <input type="text" name="lname"></p>
+        <p> Notes: <input type="text" name="note"></p>
+        <p> <input type="submit" value="Add"></p>
+    </form>
+
+    <table>
+        <tr>
+            <th> ID</th>
+            <th> Name</th>
+            <th> ACTION</th>
+        </tr>
+        {% for auth in allauthor %}
+        <tr>
+            <td> {{auth.id}}</td>
+            <td> {{auth.first_name}} {{auth.last_name}}</td>
+            <td> <a href="/authors/{{auth.id}}">View</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

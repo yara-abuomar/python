@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> {{oneauthor.first_name}} {{oneauthor.last_name}}</h1>
+    <h5>{{oneauthor.id}}</h5>
+    <h5>{{oneauthor.notes}}</h5>
+
+    Books:
+    {% for one in oneauthor.books.all %}
+    {{one.title}}
+    {%endfor%}
+    <form method="post" action="/book/{{oneauthor.id}}">
+        {% csrf_token %}
+        <select name="book1">
+            {% for book in allbooks %}
+            {% if book not in oneauthor.books.all%}
+            <option value="{{book.id}}"> {{book.title}}</option>
+            {% endif %}
+            {%endfor%}
+        </select>
+        <input type="submit" value="Add">
+    </form>
+
+    
+
+    
+</body>
+</html>
