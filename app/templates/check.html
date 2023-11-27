@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> Thank you for your bussinee</h1>
+    <h3> we charged for your credit cared for $ {{add.price}}</h3>
+    <h3>you have {{request.session.buy}} order and spend  $ {{request.session.pric}} with amadon</h3>
+
+    <a href="/"> GOBACK</a>
+    <form method="post" action="/route">
+        {% csrf_token %}
+        <input type="submit" value="delete">
+    </form>
+
+
+</body>
+</html>
