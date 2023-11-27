@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> Amdon store !</h1>
+    <table>
+        <tr>
+            <th>item</th>
+            <th>price</th>
+            <th> Quntity</th>
+            <th>action</th>
+        </tr>
+        {% for it in item %}
+        <tr>
+            <td> {{it.item}}</td>
+            <td> $ {{it.price}} </td>
+            <form action="/checkout/{{it.id}}" method="post">
+                {% csrf_token %}
+              <td>  <select name='quantity' >
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                 </select> </td>
+                 <input type='hidden' name='price' value='{{it.id}}'>
+                  <td><button type='submit'>Buy!</button> </td>
+
+            </form>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
