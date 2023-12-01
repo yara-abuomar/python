@@ -1,0 +1,20 @@
+.style{
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+.space{
+    display: flex;
+}
+.stylehead{
+    display: flex;
+    justify-content: space-between;
+}
+.msg{
+    color: white;
+    background-color: blue;
+}
+.com{
+    color: white;
+    background-color:green;
+}

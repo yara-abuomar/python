@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    
+</head>
+<body>
+    <div class="style">
+    
+    <div>
+    <form method="post" action="/regester">
+        <h1> Regester form</h1>
+        {% csrf_token %}
+        <div class="space">
+        <div>
+        <p> First name </p>
+        <p> Last name </p>
+        <p> Email</p>
+        <p> Password</p>
+        <p>  Confirm Password</p>
+        </div>
+        <div>
+            <p><input type="text" name="fname"></p>
+        <p> <input type="text" name="lname"></p>
+        <p> <input type="email" name="email"></p>
+        <p><input type="password" name="pass"></p>
+        <p>  <input type="password" name="confirm"></p>
+         <input type="submit" value="add">    
+         </div>  
+         </div>  
+
+    </form>
+</div>  
+    
+        <div>
+        <form method="post" action="/login">
+            <h1> Log in form</h1>
+            {% csrf_token %}
+            <div class="space">
+            <div>
+            <p> Email</p>
+            <p> Password</p>
+            </div>
+            <div>
+                <p> <input type="email" name="email"></p>
+            <p> <input type="password" name="pass"></p>
+            <input type="submit" value="add">
+            </div>
+        </div>
+           
+    
+        </form>
+        </div>
+        
+        </div>
+        
+        
+        {% if messages %}
+<ul class="messages">    
+    {% for message in messages %}    
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+    {% endfor %}
+</ul>
+{% endif %}
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class="stylehead">
+
+        <h1> Coding dojo well </h1>
+        <div class="stylehead">
+            <div >
+        <h3> Welcom {{request.session.name}}</h3>
+        </div>
+        <div>
+        <a href="/logout"> logout</a>
+        </div>
+        </div>
+
+    </div>
+     <hr>
+     <form method="post" action="/addmsg">
+        {% csrf_token %}
+        <p> Post massege: </p>
+        <p> <textarea name="msg" cols="50" rows="5"> </textarea></p>
+        <input type="submit" value="post amassege" class="msg">
+     </form>
+    
+
+
+{% for msg in allmsg %}
+<p style="font-size: larger;">{{msg.user.first_name}} -{{msg.created_at}} </p>
+ <ul >{{msg.massege}} 
+     <form method="post" action="/del/{{msg.id}}">
+    {% csrf_token %}
+    <input type="submit" value="Delete msg" >
+ </form> </ul>
+
+
+
+ <form method="post" action="/com/{{msg.id}}">
+    {% csrf_token %}
+    <p> Post a comment: </p>
+    <p> <textarea name="com" cols="50" rows="5"> </textarea></p>
+    <input type="submit" value="post comment" class="com">
+ </form>
+ {% for com in msg.comments.all %}
+{{com.user.first_name}}-{{com.user.created_at}}
+<ol > {{com.Comment}} </ol>
+
+
+
+{% endfor %}
+<hr>
+{% endfor %}
+
+
+
+      
+
+</body>
+</html>
+
