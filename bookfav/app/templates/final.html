@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class="showstyle">
+        <div>
+     <h2> Welcome  {{request.session.name}}</h2>
+    </div>
+    <div>
+    <a href="/logout"> Log out</a>
+    </div>
+    </div>
+
+<hr>
+
+    <div >
+        {% if which != 1 %}
+       <p><h3> {{onebook.title}} </h3> </p>
+       <h4>Added by: {{onebook.user_upload.first_name}}</h4>
+       <h4>Added on: {{onebook.created_at}}</h4>
+       <h4> last Updated on: {{onebook.updated_at}}</h4>
+       <h4> Discription : {{onebook.Descriptionn}}</h4>
+       {% endif %}
+
+       {% if which == 1 %}
+       <form method="post" action="/update/{{onebook.id}}/{{onebook.user_upload.id}}">
+        {% csrf_token %}
+       <p> <input type="text" name="title1" value="{{onebook.title}} "> </p>
+       <h4>Added by: {{onebook.user_upload.first_name}}</h4>
+       <h4>Added on: {{onebook.created_at}}</h4>
+       <h4> last Updated on: {{onebook.updated_at}}</h4>
+       <p> <textarea name="desc" rows="5"> {{onebook.Descriptionn}}</textarea></p>
+       <input type="submit" value="Update">
+       </form>
+       <form method="post" action="/del/{{onebook.id}}/{{onebook.user_upload.id}}">
+        {% csrf_token %}
+       <input type="submit" value="Delete">
+       </form>
+       {% endif %}
+
+
+    </div>
+
+    <div >
+        {% if which == 1 %}
+        <h1>User Who like this book: </h1>   
+        {% for us in onebook.users_fav.all %}
+         <p>{{us.first_name}}</p>
+    
+        {% if us.id == request.session.id %}
+        <p><a href="/unfav/{{onebook.id}}"> Un fav </a></p> 
+        {% endif %}
+
+        {% endfor %}
+        {% endif %}
+
+        {% if which == 2 %}
+        <h1>User Who like this book: </h1>   
+        {% for us in onebook.users_fav.all %}
+       <p>{{us.first_name}}</p>
+       
+        {% endfor %}
+        <p><a href="/addfav/{{onebook.id}}"> Add to fav </a></p> 
+        {% endif %}
+
+        
+    </div>
+    </div>
+
+    {% if messages %}
+<ul class="messages">    
+    {% for message in messages %}    
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+    {% endfor %}
+</ul>
+{% endif %}
+</body>
+</html>

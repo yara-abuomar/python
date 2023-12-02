@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class="showstyle">
+        <div>
+     <h2> Welcome  {{request.session.name}}</h2>
+    </div>
+    <div>
+    <a href="/logout"> Log out</a>
+    </div>
+    </div>
+
+<hr>
+
+    <div class="main">
+        <div>
+    <h1> Add favorit book : </h1>   
+    <form method="post" action="/addbook">
+        {% csrf_token %}
+        <div class="style">
+        <div>
+            <p> Title :</p>
+            <p> Decription :</p>
+            
+        </div>
+        <div>
+            <p> <input type="text" name="title1"></p>
+            <p> <textarea name="desc" rows="5"> </textarea></p>
+            <p> <input type="submit" value="Add Book"></p>
+        </div>
+        </div>
+
+    </form> 
+    </div>
+    <div >
+        <h1> All Books </h1>   
+        {% for book in allbook %}
+        <p> <a href="/books/{{book.id}}" > {{book.title}}</a></p>
+        <p>  (added by {{book.user_upload.first_name}}) </p>
+        <p>  {{book.Descriptionn}}</p>
+        {% endfor %}
+    </div>
+    </div>
+
+    {% if messages %}
+<ul class="messages">    
+    {% for message in messages %}    
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+    {% endfor %}
+</ul>
+{% endif %}
+</body>
+</html>
